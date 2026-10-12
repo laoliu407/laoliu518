@@ -2,7 +2,7 @@
 
 ## 怎么用这份文件
 
-> 这是导演版的完整分镜，包含剪辑说明。实际生成时，直接用拆好的两份任务单更方便：[gpt-images.md](gpt-images.md)（ChatGPT 生图）和 [grok-videos.md](grok-videos.md)（Grok 生视频）。两份任务单里的提示词和本文件一致。
+> **注意：本文件里的提示词是第 1 版（电影感），已经过时，不要再用。** 生成时请用按纪录片质感重写的第 2 版任务单：[gpt-images.md](gpt-images.md)（ChatGPT 生图）和 [grok-videos.md](grok-videos.md)（Grok 生视频）。本文件只保留作分镜和剪辑说明的参考，比如 S13 画面裂开、S23 古地图动画、S24 闪电变成火的剪法。
 
 **ChatGPT 生首帧：**
 1. 开一个新会话，先粘贴下面的"会话设定"，并附上四张参考图（W-ELDER、A-ELDER、W-VILLAGE、A-VILLAGE，生成方法见 02 文件）。
@@ -233,8 +233,8 @@ Wind sweeps through and clears the remaining fog, revealing the snow peaks. The 
 ### S13｜画面裂开｜1:07–1:11
 不需要生成，剪辑完成：
 1. S12A 播到最后，画面正中出现一条细竖线；
-2. A 画面向右滑，变成右半屏（裁取中间三分之二）；
-3. 左半屏滑进 S11W 的画面（同样裁取中间三分之二）；
+2. A 画面向右滑，变成右半屏（裁取中间一半）；
+3. 左半屏滑进 S11W 的画面（同样裁取中间一半）；
 4. 1:08 淡入"两座山"，坐标逐字打出（规格见 02 文件）。
 
 ---
@@ -242,7 +242,7 @@ Wind sweeps through and clears the remaining fog, revealing the snow peaks. The 
 ## 第二幕 两座山
 
 ### S14｜分屏·两捧洋芋｜1:11–1:16
-主体居中，剪辑时裁中间三分之二放进分屏。
+主体居中，剪辑时裁中间一半放进分屏。
 
 首帧 W：
 ```
