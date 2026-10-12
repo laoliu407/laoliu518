@@ -48,6 +48,8 @@
 | [02-style-bible.md](02-style-bible.md) | 视觉规范：三条铁律、人物与场景设定、色彩、字体、界面、一致性方法 |
 | [03-shots-and-prompts.md](03-shots-and-prompts.md) | 逐镜头分镜与提示词（ChatGPT 生首帧 + Grok 生视频） |
 | [04-sound.md](04-sound.md) | 音乐、音效、对白、旁白、混音交付 |
+| [gpt-images.md](gpt-images.md) | **ChatGPT 生图任务单**：53 张图（4 张参考图 + 49 张首帧），整份上传给 ChatGPT 按部分执行 |
+| [grok-videos.md](grok-videos.md) | **Grok 视频任务单**：48 条视频，每条对应一张首帧图 |
 
 ## 制作流程（按顺序做）
 

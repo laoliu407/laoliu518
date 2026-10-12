@@ -2,6 +2,8 @@
 
 ## 怎么用这份文件
 
+> 这是导演版的完整分镜，包含剪辑说明。实际生成时，直接用拆好的两份任务单更方便：[gpt-images.md](gpt-images.md)（ChatGPT 生图）和 [grok-videos.md](grok-videos.md)（Grok 生视频）。两份任务单里的提示词和本文件一致。
+
 **ChatGPT 生首帧：**
 1. 开一个新会话，先粘贴下面的"会话设定"，并附上四张参考图（W-ELDER、A-ELDER、W-VILLAGE、A-VILLAGE，生成方法见 02 文件）。
 2. 每个镜头先粘贴 **首帧 W**，生成 3 到 4 张，挑一张。
