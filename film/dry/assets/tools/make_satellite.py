@@ -1,6 +1,7 @@
 # 把下载好的逐日卫星图合成为 S02（8.5 秒，24fps，1920×1080）。
 # 片中位置 0:01.5–0:10.0；素材内第 7.9 秒（片中 0:09.4）定格在最后一天。
-# 用法：python3 make_satellite.py <卫星图文件夹> <字体文件夹> <输出文件夹>
+# 用法：python3 make_satellite.py <卫星图文件夹> <字体文件夹> <输出文件夹> [tail]
+# 加 tail 参数时只生成 S02b（1 秒）：定格画面继续缓慢推近，文字在前 8 帧淡出，用来接 S03 穿云。
 import os
 import subprocess
 import sys
@@ -43,9 +44,13 @@ def view_box(f):
     else:
         t = min(1.0, (f - ZOOM_START) / (ZOOM_END - ZOOM_START))
         z = 1.0 + (ZOOM_MAX - 1.0) * ease_out_cubic(t)
+    return box_for_zoom(z)
+
+
+def box_for_zoom(z):
     cw, ch = SW / z, SH / z
     # Interpolate the centre from the frame centre to Weixin, then keep the box inside the image.
-    k = (z - 1.0) / (ZOOM_MAX - 1.0)
+    k = min(1.0, (z - 1.0) / (ZOOM_MAX - 1.0))
     cx = SW / 2 + (WX - SW / 2) * k
     cy = SH / 2 + (WY - SH / 2) * k
     x0 = min(max(cx - cw / 2, 0), SW - cw)
@@ -116,6 +121,33 @@ def label_layer(date_text, frozen, box):
     base.alpha_composite(shadowed(layer))
     return base
 
+
+if len(sys.argv) > 4 and sys.argv[4] == "tail":
+    # S02b: 1 s continuation of the freeze. Zoom 3.0 -> 3.3 (ease in-out), labels fade out over 8 frames.
+    last = Image.open(os.path.join(SRC, days[-1])).convert("RGB")
+    date_text = days[-1][:10].replace("-", ".")
+    tmp_t = os.path.join(OUT, "_frames_tail")
+    os.makedirs(tmp_t, exist_ok=True)
+    for f in range(24):
+        t = f / 23
+        z = ZOOM_MAX + 0.3 * (3 * t * t - 2 * t * t * t)
+        box = box_for_zoom(z)
+        frame = last.resize((W, H), Image.LANCZOS, box=box).convert("RGBA")
+        fade = max(0.0, 1 - f / 8)
+        if fade > 0:
+            lab = label_layer(date_text, True, box)
+            lab.putalpha(lab.split()[3].point(lambda v, k=fade: int(v * k)))
+            frame.alpha_composite(lab)
+        frame.convert("RGB").save(os.path.join(tmp_t, f"{f:04d}.png"))
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(FPS),
+                    "-i", os.path.join(tmp_t, "%04d.png"),
+                    "-c:v", "libx264", "-crf", "18", "-preset", "slow", "-pix_fmt", "yuv420p",
+                    os.path.join(OUT, "S02b_freeze_out.mp4")], check=True)
+    for fn in os.listdir(tmp_t):
+        os.remove(os.path.join(tmp_t, fn))
+    os.rmdir(tmp_t)
+    print("tail done")
+    sys.exit(0)
 
 tmp_l = os.path.join(OUT, "_frames_labels")
 tmp_c = os.path.join(OUT, "_frames_clean")
