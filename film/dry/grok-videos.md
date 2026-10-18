@@ -25,7 +25,7 @@ Every clip must look like real documentary footage: a locked-off tripod camera u
 
 ## 序与一月
 
-### S03｜穿云（片中 0:10.5–0:15）｜剪后 4.5 秒
+### S03｜穿云（片中 0:10.0–0:15）｜剪后 5 秒（开头 1 秒被卫星过渡 S02b 盖住）
 上传：`S03.jpg`
 ```
 Slow, steady drone descent straight down into a flat layer of grey-white cloud, real-time, no speed ramp. The cloud texture drifts slowly; after about two seconds the frame becomes a uniform pale grey-white inside the cloud. No sunlight, no lens flare, no text.
